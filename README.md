@@ -1,4 +1,4 @@
-# Microbadget Notify
+# Microbadger Notify
 
 Simple go application which can be used in build pipelines to notify microbadger that a new docker image has been pushed.
 
