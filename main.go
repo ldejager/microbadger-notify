@@ -58,7 +58,7 @@ func main() {
 	})
 
 	if err != nil {
-		log.Fatal("Error occured")
+		return err
 		os.Exit(1)
 	}
 
