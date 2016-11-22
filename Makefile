@@ -10,7 +10,7 @@ else
 	EXTLDFLAGS =
 endif
 
-all: deps build build_docker release
+all: deps build build_docker
 
 deps:
 	go get -u github.com/ldejager/microbadger-notify
@@ -36,11 +36,5 @@ build_sha:
 
 build_docker:
 	docker build --no-cache -t $(ORGANISATION)/$(COMPONENT):$(VERSION) .
-
-docker_push:
-	docker push $(ORGANISATION)/$(COMPONENT):$(VERSION)
-
-release: all
-	make docker_push -e VERSION=$(VERSION)
 
 default: all
