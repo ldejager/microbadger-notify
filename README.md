@@ -11,7 +11,7 @@ You can get your repository token from signing into Microbadger and clicking the
 ### Usage
 
 ```
-build:
+notify:
   image: ldejager/microbadger-notify
   environment:
     - MB_REPOSITORY=your/repository

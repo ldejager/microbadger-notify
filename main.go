@@ -2,7 +2,7 @@ package main
 
 import (
 	"bytes"
-	"encoding/xml"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -14,14 +14,14 @@ import (
 	try "gopkg.in/matryer/try.v1"
 )
 
-type Microbadger struct {
+type microbadger struct {
 	Repository string
 	Token      string
 }
 
-func ConstructedURL() string {
+func constructedURL() string {
 
-	var args Microbadger
+	var args microbadger
 	err := envconfig.Process("mb", &args)
 
 	if err != nil {
@@ -31,23 +31,25 @@ func ConstructedURL() string {
 	return fmt.Sprintf("https://hooks.microbadger.com/images/%s/%s", args.Repository, args.Token)
 }
 
+func usage() string {
+	return fmt.Sprintf("\nUsage: microbadger-notify <repository> <token>")
+}
+
 func main() {
 
 	if os.Getenv("MB_REPOSITORY") == "" {
-		log.Fatal("You need to provide the repository for Microbadger\n\nUsage: microbadger-notify <repository> <token>")
+		log.Println("You need to provide the repository for Microbadger", usage())
 		os.Exit(1)
 	}
 
 	if os.Getenv("MB_TOKEN") == "" {
-		log.Fatal("You need to provide the repository for Microbadger\n\nUsage: microbadger-notify <repository> <token>")
+		log.Println("You need to provide the token for Microbadger", usage())
 		os.Exit(1)
 	}
 
-	log.Println("Notifying Microbadger...")
-
-	endpoint := fmt.Sprintf(ConstructedURL())
+	endpoint := fmt.Sprintf(constructedURL())
 	empty := url.Values{}
-	values, _ := xml.Marshal(empty)
+	values, _ := json.Marshal(empty)
 	data := bytes.NewBuffer(values)
 
 	var resp *http.Response
@@ -66,6 +68,6 @@ func main() {
 		os.Exit(1)
 	} else {
 		resp.Body.Close()
-		log.Println("Microbadger notified!")
+		log.Println("Microbadger successfully notified.")
 	}
 }
