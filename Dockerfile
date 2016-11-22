@@ -1,3 +1,3 @@
 FROM scratch
-ADD release/linux/amd64/microbadger-notify /
+ADD microbadger-notify /
 CMD ["/microbadger-notify"]
