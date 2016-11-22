@@ -31,7 +31,7 @@ pipeline:
     image: ldejager/microbadger-notify
     pull: true
     environment:
-      - MB_REPOSITORY=microbadger-notify
+      - MB_REPOSITORY=ldejager/microbadger-notify
       - MB_TOKEN=SKbaX4-yp1IJY0tbxlGO1hKjhRk=
     when:
       status: success

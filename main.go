@@ -58,15 +58,14 @@ func main() {
 	})
 
 	if err != nil {
-		fmt.Println("ERROR:", err)
+		log.Fatal("Error: ", err)
 		os.Exit(1)
-	}
-
-	if (resp.StatusCode) != 200 {
-		log.Fatal("An error occured, check the repository and token provided")
+	} else if (resp.StatusCode) != 200 {
+		log.Println("Received unexpected response code:", resp.StatusCode)
+		log.Println("Attempted POST URL: ", endpoint)
 		os.Exit(1)
+	} else {
+		resp.Body.Close()
+		log.Println("Microbadger notified!")
 	}
-
-	resp.Body.Close()
-	log.Println("Microbadger notified!")
 }
