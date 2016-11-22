@@ -58,7 +58,7 @@ func main() {
 	})
 
 	if err != nil {
-		return err
+		fmt.Println("ERROR:", err)
 		os.Exit(1)
 	}
 
