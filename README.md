@@ -2,7 +2,7 @@
 
 [![Build Status](https://droneci.rwxlabs.io/api/badges/ldejager/microbadger-notify/status.svg)](https://droneci.rwxlabs.io/ldejager/microbadger-notify) [![](https://images.microbadger.com/badges/image/ldejager/microbadger-notify.svg)](https://microbadger.com/images/ldejager/microbadger-notify "Get your own image badge on microbadger.com")
 
-Simple utility container which can be used in drone build pipelines to notify Microbadger via an HTTP POST that a new docker image has been pushed which triggers a metadata refresh on Microbadger for the docker image.
+Simple utility container which can be used in drone build pipelines to notify Microbadger via an HTTPS POST that a new docker image has been pushed which triggers a metadata refresh on Microbadger for the docker image. There is an official webhook plugin for drone, however the utility is my attempt to learn go by doing it myself.
 
 ### Configuration
 
